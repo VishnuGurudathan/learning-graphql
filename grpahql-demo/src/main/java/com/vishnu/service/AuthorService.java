@@ -46,6 +46,13 @@ public interface AuthorService {
 
 	/**
 	 * <p>
+	 * Find author by email.
+	 * </p>
+	 * @return {@link Author}
+	 */
+	public Author findByEmail(String email);
+	/**
+	 * <p>
 	 * Get a Author based on id.
 	 * </p>
 	 * 
@@ -59,4 +66,11 @@ public interface AuthorService {
 	 * @return
 	 */
 	public Long numberOfAuthors();
+	
+	/**
+	 * 
+	 * @param author
+	 * @return @return {@link Author}
+	 */
+	public Author updateAuthorDeatils(Author author);
 }

@@ -64,4 +64,18 @@ public class AuthorServiceImpl implements AuthorService {
 		return this.authorRepository.count();
 	}
 
+
+	@Override
+	@Transactional(readOnly = true)
+	public Author findByEmail(String email) {
+		return this.authorRepository.findByEmail(email);
+	}
+
+
+	@Override
+	@Transactional
+	public Author updateAuthorDeatils(Author author) {
+		return this.authorRepository.saveAndFlush(author);
+	}
+
 }

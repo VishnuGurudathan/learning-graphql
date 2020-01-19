@@ -21,5 +21,5 @@ import com.vishnu.dao.entity.Author;
  */
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
-
+	public Author findByEmail(String email);
 }

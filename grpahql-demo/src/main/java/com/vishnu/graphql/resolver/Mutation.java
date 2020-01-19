@@ -4,6 +4,8 @@
  */
 package com.vishnu.graphql.resolver;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.vishnu.dao.entity.Author;
 import com.vishnu.dao.entity.Book;
 import com.vishnu.graphql.exception.BookNotFoundException;
+import com.vishnu.graphql.input.UpdateAuthorInput;
 import com.vishnu.service.AuthorService;
 import com.vishnu.service.BookService;
 
@@ -54,5 +57,15 @@ public class Mutation implements GraphQLMutationResolver {
 		return bookService.save(book);
 	}
 	
-	
+	public Author updateAuthor(UpdateAuthorInput input) {
+		Author author = authorService.findByEmail(input.getEmail());
+		if (author == null) // TODO Need to change to application specific exception class.
+			throw new EntityNotFoundException("Requested Author with email '" + input.getEmail() + "' not found.");
+		if (input.getWebSite()!= null)
+			author.setWebSite(input.getWebSite());
+		if (input.getFirstName() != null)
+			author.setFirstName(input.getFirstName());
+		
+		return authorService.updateAuthorDeatils(author);
+	}
 }
