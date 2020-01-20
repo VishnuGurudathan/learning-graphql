@@ -50,13 +50,14 @@ public class Mutation implements GraphQLMutationResolver {
 		return this.bookService.addBook(title, isbn, pageCount, authorId, publishedOn);
 	}
 
+	//TODO : Move the business logic to service class.
 	public Book updateBookPageCount(Integer pageCount, Long id) {
 		Book book = bookService.getBook(id)
 				.orElseThrow(() -> new BookNotFoundException("Requested book to update was not found.", id));
 		book.setPageCount(pageCount);
 		return bookService.save(book);
 	}
-	
+	//TODO : Move the business logic to service class.
 	public Author updateAuthor(UpdateAuthorInput input) {
 		Author author = authorService.findByEmail(input.getEmail());
 		if (author == null) // TODO Need to change to application specific exception class.

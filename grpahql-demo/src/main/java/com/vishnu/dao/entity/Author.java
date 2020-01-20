@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,6 +48,7 @@ public class Author implements Serializable {
 	private Long id;
 
 	@Column(name = "first_name", nullable = false)
+	@NotEmpty(message = "Please provide a author name.")
 	private String firstName;
 
 	@Column(name = "last_name")

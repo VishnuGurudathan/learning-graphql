@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -48,6 +49,7 @@ public class Book implements Serializable{
 	private String title;
 
 	@Column(name = "isbn", nullable = false)
+	@Size(min=7, message="ISBN should have atleast 4 characters")
 	private String isbn;
 
 	@Column(name = "page_count")
